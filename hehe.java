@@ -8,49 +8,17 @@ import java.awt.Graphics;
 import javax.swing.SwingUtilities;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.*;
- class Test //implements ActionListener 
+
+
+ class Test  
 {
 
     
  
- //static JButton b1;
- //static JFrame f;
-//static JTextField t1; 
-
-/*Test()
-{
-    f=new JFrame("Welcome");
-
-  t1=new JTextField("Welcome to our application");
-  b1=new JButton("Proceed");
-  t1.setBounds(140,50,300,50);
-  b1.setBounds(220,400,140,50);
-  Font font = new Font("Verdana", Font.BOLD, 18);
-  Font font1 = new Font("Verdana", Font.ITALIC, 18); 
-  t1.setFont(font);
-  //b1.setFont(font1);
-  b1.addActionListener(this);
-  t1.setBackground(Color.yellow);
-  //b1.setBackground(Color.green);
-  f.add(t1);
-  f.add(b1);
-   t1.setEditable(false);
-  f.setSize(600,600);
-  
-  f.setLayout(null);
-  f.setVisible(true);
-  f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
-
-        
-        
-
-} */ 
 
     public static void main(String... args)
     {
@@ -59,30 +27,10 @@ import java.awt.event.*;
     }
 
 
-/*public void actionPerformed(ActionEvent e)
-   {
-
-    
-        if(e.getSource()==b1)
-        {  
-            new ball();      
-        }  
-
-        
-        
-
-   }*/
-
     
 }
 
-/*class hy{
 
-    hy()
-    {
-        new ball();
-    }
-}*/
 
 
  class ball{
@@ -198,10 +146,10 @@ f=new JFrame("Welcome");
   Font font = new Font("Verdana", Font.BOLD, 18);
   Font font1 = new Font("Verdana", Font.ITALIC, 18); 
   t1.setFont(font);
-  //b1.setFont(font1);
+  b1.setFont(font1);
   b1.addActionListener(this);
   t1.setBackground(Color.yellow);
-  //b1.setBackground(Color.green);
+  b1.setBackground(Color.green);
   f.add(t1);
   f.add(b1);
    t1.setEditable(false);
