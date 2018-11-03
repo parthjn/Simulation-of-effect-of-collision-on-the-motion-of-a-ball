@@ -7,19 +7,20 @@ import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
 import javax.swing.JButton;
 class BouncingBall extends JPanel implements ActionListener {
-  Timer t = new Timer(1,this);
-  double x = 230,y = 0;
+  Timer t = new Timer(1,this); // this timer function calls the action listener after every 1 milli second 
+  double x = 230,y = 0;        // which is defined below 
   double acc = 10;
   double u = 0,v = 0;
   double ti = 0,start = 0;
   boolean temp = false;  
   int i = 0;
-  public void paintComponent(Graphics g){
+  // whenever a repaint() function is called this method is implemented after that
+  public void paintComponent(Graphics g){ 
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) g;
     Ellipse2D.Double circle = new Ellipse2D.Double(x,y,40,40);
     g2.fill(circle);
-    t.start();
+    t.start(); // after the repainting the ball timer starts again and calls the action listener again 
   }
   public void actionPerformed(ActionEvent e){
     if(y > 720 )
@@ -32,6 +33,7 @@ class BouncingBall extends JPanel implements ActionListener {
         ti = 0;
         acc = -acc;
     }
+    // this code is not good so we will do something else so ingnore the logic here made we wil start fresh
     else if(y < 0)
     {
         temp = false;
