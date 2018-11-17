@@ -3,8 +3,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,17 +17,11 @@ public class MFrame extends JFrame{
      private SliderPanel sliderpanel;
      private AnimationPanel anipanel;
      private Image back;
-     private WindowStateListener l=new WindowStateListener() {
-
-		@Override
-		public void windowStateChanged(WindowEvent e) {
-			anipanel.setWi(MFrame.this.getWidth());
-			anipanel.setHe(MFrame.this.getHeight());
-			//repaint();
-			System.out.println("yo");
-			
-		}
-    	 
+     private ComponentAdapter l=new ComponentAdapter() {
+    	public void componentResized(ComponentEvent e) {
+    		anipanel.setWi(getWidth());
+    		anipanel.setWi(getHeight());
+    	}
      };
      public MFrame() {
     	 super("Ball Motion Simulation");
@@ -52,7 +46,13 @@ public class MFrame extends JFrame{
 
 			@Override
 			public void start() {
-				anipanel.startAnimation();
+				anipanel.startStopAnimation();
+				sliderpanel.changeButton(anipanel.getFlag());
+			}
+
+			@Override
+			public void restart() {
+				anipanel.restartAnimation();
 				
 			}
     		 
@@ -78,6 +78,7 @@ public class MFrame extends JFrame{
     	 makeMenu();
     	  
     	 //addWindowStateListener(this);
+    	 addComponentListener(l);
     	 add(sliderpanel,BorderLayout.SOUTH);
     	 add(anipanel,BorderLayout.CENTER);
     	 setSize(600,400);
@@ -85,7 +86,7 @@ public class MFrame extends JFrame{
     	 setMinimumSize(new Dimension(400,300));
     	 //setSize(601,401);
     	 
-    	 setSize(600,400);
+    	 setSize(800,600);
     	 
     	 setVisible(true);
     	 //setSize(601,401);
@@ -124,7 +125,7 @@ public class MFrame extends JFrame{
     	 
     	 file.add(exit);
     	 jmb.add(file);
-    	 add(jmb,BorderLayout.NORTH);
+    	 setJMenuBar(jmb);
     	 
      }
 }

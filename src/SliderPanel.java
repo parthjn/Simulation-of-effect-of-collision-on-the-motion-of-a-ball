@@ -25,23 +25,35 @@ public class SliderPanel extends JPanel{
     private JButton pause;
     private JButton restart;
     private cueL al;
+    private int count=0;
     public SliderPanel() {
         setLayout(new GridBagLayout());
         GridBagConstraints gc=new GridBagConstraints();
         restitution =new JLabel("Coefficient of restitution  : ");
         eSlider =new JSlider(JSlider.HORIZONTAL);
         height=new JLabel("Height :");
-        e=new JTextField(5);
-        h=new JTextField(5);
-        pause=new JButton("Pause");
+        e=new JTextField("0.5",5);
+        h=new JTextField("50",5);
+        pause=new JButton("Play");
         restart=new JButton("Rsetart");
-        
+        count=0;
         pause.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				al.start();
+				count=1;
+			}
+			
+        	
+        });
+        restart.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				al.restart();
+				
 			}
         	
         });
@@ -54,7 +66,7 @@ public class SliderPanel extends JPanel{
         heightSlider=new JSlider(JSlider.HORIZONTAL);
         
         gc.gridx=0;
-        gc.gridy=1;
+        gc.gridy=0;
         gc.weightx=1;
         gc.weighty=1;
         gc.fill=GridBagConstraints.NONE;
@@ -78,7 +90,9 @@ public class SliderPanel extends JPanel{
 			@Override
 			public void stateChanged(ChangeEvent ev) {
 				h.setText(heightSlider.getValue()+"");
-				
+				RestitutionEvent event=new RestitutionEvent(this,Double.parseDouble(e.getText()),Double.parseDouble(h.getText()));
+				if(el!=null)
+					el.restitutionEventOccurred(event);
 			}
         	
         });
@@ -135,6 +149,12 @@ public class SliderPanel extends JPanel{
     }
     public void setEEvent(RestitutionEventListener el) {
     	this.el=el;
+    }
+    public void changeButton(boolean pauseFlag) {
+    	if(!pauseFlag)
+    		pause.setText("Play");
+    	else
+    		pause.setText("Pause");
     }
 	
 }
