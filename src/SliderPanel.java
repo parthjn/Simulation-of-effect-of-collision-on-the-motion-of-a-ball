@@ -36,14 +36,13 @@ public class SliderPanel extends JPanel{
         h=new JTextField("50",5);
         pause=new JButton("Play");
         restart=new JButton("Rsetart");
-        count=0;
+        //count=0;
         pause.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				al.start();
-				count=1;
 			}
 			
         	

@@ -14,17 +14,17 @@ public class AnimationPanel extends JPanel implements ActionListener{
 	private double u,v;
     private boolean once;
     private double Wi,He;
-    private static double k=50.0,g=0.01;
+    private static double k=100.0;
     private double totalTime;
     private int touchdown;
     private boolean pauseFlag;
     private final double gravity=0.001;
     private boolean temp;
     public AnimationPanel() {
-    	h=0;
+    	h=-50;
     	t1=new Timer(1,this);
     	e=1.0;
-    	y1=0;
+    	y1=50;
     	once=false;
     	totalTime=0.0;
     	u=0;
@@ -40,6 +40,7 @@ public class AnimationPanel extends JPanel implements ActionListener{
 	    if(!pauseFlag) {
 	    	t1.start();
 	    	pauseFlag=true;
+	    	once=true;
 	    }
 	    else {
 	    	t1.stop();
@@ -70,29 +71,6 @@ public class AnimationPanel extends JPanel implements ActionListener{
 	public int calTime() {
 		return 0;
 	}
-	private ActionListener ac=new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			if(y1>200) {
-				temp=true;
-				y1=720;
-				v=v*e;
-			}
-			else if(v<=0||y1<=0) {
-				temp=false;
-			}
-			if(temp==false) {
-				v+=gravity;
-				y1+=v;
-			}else if(temp==true) {
-				v-=gravity;
-				y1-=v;
-			}
-			repaint();
-		}
-		
-	};
 	public void setE(double e) {
 		this.e = e;
 		//repaint();
@@ -101,7 +79,7 @@ public class AnimationPanel extends JPanel implements ActionListener{
 		return y1;
 	}
 	public void setY1(double y1) {
-		this.y1 = y1;
+		this.y1 = 100-y1;
 		repaint();
 	}
 	public void caltime() {
@@ -115,9 +93,10 @@ public class AnimationPanel extends JPanel implements ActionListener{
 		return pauseFlag;
 	}
 	public void restartAnimation() {
-		y1=0+h;
+		y1=100+h;
 		u=0;
 		repaint();
+		once=false;
 		if(pauseFlag)
 		  t1.restart();
 		

@@ -63,10 +63,10 @@ public class MFrame extends JFrame{
 			public void restitutionEventOccurred(RestitutionEvent ev) {
 				double e=ev.getE();
 				double height=ev.getHeight();
-				if(anipanel.isOnce()) {
+				if(!anipanel.isOnce()) {
 					anipanel.setE(e);
 					anipanel.setY1(height);
-					anipanel.setOnce(true);
+					
 				}
 				else
 					anipanel.setE(e);
