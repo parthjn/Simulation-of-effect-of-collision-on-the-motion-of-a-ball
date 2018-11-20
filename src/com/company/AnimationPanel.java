@@ -22,8 +22,8 @@ public class AnimationPanel extends JPanel implements ActionListener{
     private boolean temp;
     private Image img;
     public AnimationPanel() {
-        this(new ImageIcon(new ImageIcon("bg1.jpg").getImage()).getImage());
-    	h=50;
+       // this(new ImageIcon(new ImageIcon("bg1.jpg").getImage()).getImage());
+
     	t1=new Timer(1,this);
     	e=0.5;
     	y1=200;
@@ -36,6 +36,7 @@ public class AnimationPanel extends JPanel implements ActionListener{
     	touchdown=0;
     	pauseFlag=false;
     	temp=false;
+    	h=y1;
     	setSize(300,200);
     }
 
@@ -78,18 +79,19 @@ public class AnimationPanel extends JPanel implements ActionListener{
    
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(img,0,0,null);
+		//g.drawImage(img,0,0,null);
 		Graphics2D g2=(Graphics2D)g;
 		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g2.fillOval((int)(0.6*Wi),(int)y1,30,30);
-		g2.drawLine((int)(0.5*Wi), 280,(int)(0.8*Wi), 280);
+		g2.drawLine((int)(0.45*Wi), 280,(int)(0.8*Wi), 280);
 	}
 	public int calTime() {
 		return 0;
 	}
 	public void setE(double e) {
+        //y1=200;
 		this.e = e;
-		repaint();
+		//repaint();
 	}
 	public double getY1() {
 		return y1;
@@ -109,10 +111,11 @@ public class AnimationPanel extends JPanel implements ActionListener{
 		return pauseFlag;
 	}
 	public void restartAnimation() {
-		y1=250-h;
+		y1=200;
 		u=0;
 		repaint();
 		once=false;
+		touchdown=0;
 		if(pauseFlag)
 		  t1.restart();
 		
@@ -120,7 +123,6 @@ public class AnimationPanel extends JPanel implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-
 			if(y1>250) {
 				temp=true;
 				y1=250;

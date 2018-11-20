@@ -60,6 +60,10 @@ public class SliderPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				al.restart();
+				heightSlider.setValue(50);
+				eSlider.setValue(50);
+				e.setText(eSlider.getValue()/100.0+"");
+				h.setText(50+"");
 				
 			}
         	
@@ -73,6 +77,8 @@ public class SliderPanel extends JPanel{
         heightSlider=new JSlider(JSlider.HORIZONTAL,0,250,50);
         heightSlider.setMajorTickSpacing(50);
         heightSlider.setMinorTickSpacing(10);
+        heightSlider.setPaintLabels(true);
+        heightSlider.setPaintTicks(true);
         
         gc.gridx=0;
         gc.gridy=0;
@@ -87,8 +93,9 @@ public class SliderPanel extends JPanel{
         eSlider.addChangeListener(new ChangeListener() {
         	public void stateChanged(ChangeEvent ev) {
         		e.setText(eSlider.getValue()/100.0+"");
+                //e.setText(eSlider.getValue()+"");
         		
-        			RestitutionEvent event=new RestitutionEvent(this,Double.parseDouble(e.getText()),Double.parseDouble(e.getText()));
+        			RestitutionEvent event=new RestitutionEvent(this,Double.parseDouble(e.getText()),Double.parseDouble(h.getText()));
         			
         		if(el!=null)
         			el.restitutionEventOccurred(event);
@@ -126,7 +133,7 @@ public class SliderPanel extends JPanel{
         final int jh=89;
         
         gc.gridx=0;
-        gc.gridy=2;
+        gc.gridy=3;
         gc.anchor=GridBagConstraints.CENTER;
         add(restart,gc);
         
